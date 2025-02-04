@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Donations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .navbar {
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            text-align: center;
+        }
+
+        .table {
+            margin-top: 30px;
+        }
+
+        .table th, .table td {
+            padding: 15px;
+            vertical-align: middle;
+        }
+
+        .table td {
+            font-size: 14px;
+        }
+
+        .table thead {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .table td {
+            background-color: #f9f9f9;
+        }
+
+        .table td:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            margin-top: 30px;
+            text-align: center;
+            color: #007bff;
+        }
+
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../donorhome">
+                <img src="../static/R.jpg" alt="Logo" style="width:40px;" class="rounded-pill">
+            </a>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../donorprofile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../givedonations">Donations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../listofdonations">Donation List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../logout">Logout</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary" type="button">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Heading -->
+    <h2>List of Donations</h2>
+
+    <!-- Table Container -->
+    <div class="table-container container">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Donation Type</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Donation Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for donation in donations %}
+                <tr>
+                    <td>{{ donation.donation_type }}</td>
+                    <td>{{ donation.amount }}</td>
+                    <td>{{ donation.description }}</td>
+                    <td>{{ donation.donation_date }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">No donations made yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
