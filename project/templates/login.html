@@ -12,6 +12,15 @@
         <div class="card" style="width: 100%; max-width: 400px;">
             <div class="card-body">
                 <h3 class="card-title text-center mb-4">Login</h3>
+                
+                {% if messages %}
+        <div class="error-message">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
                 <form method="POST">
                     {% csrf_token %}
                     <div class="mb-3">
@@ -33,6 +42,7 @@
                 </div>
                 <div class="text-center mt-3">
                     <p>Don't have an account? <a href="../donor/register" class="text-decoration-none">Sign up</a></p>
+                    <li><a href="../">Back</a></li>
                 </div>
             </div>
         </div>
