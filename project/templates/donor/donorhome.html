@@ -1,133 +1,616 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="zxx">
 
 <head>
-    <title>Care For Child - Orphanage Management</title>
+    {% load static %}
     <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Charifit</title>
+    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
-        }
 
-        .navbar {
-            margin-bottom: 30px;
-        }
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+    <!-- Place favicon.ico in the root directory -->
 
-        .navbar-nav a {
-            font-weight: 500;
-        }
-
-        .navbar-brand img {
-            width: 40px;
-            border-radius: 50%;
-        }
-
-        .hero-section {
-            position: relative;
-            text-align: center;
-            margin-top: 20px;
-            color: white;
-        }
-
-        .hero-image {
-            width: 100%;
-            height: 70%;
-            object-fit: cover;
-            border-radius: 15px;
-            filter: brightness(50%);
-        }
-
-        .hero-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .hero-text h3 {
-            font-size: 32px;
-            font-weight: 700;
-            color: #f4f7f6;
-            margin-bottom: 20px;
-        }
-
-        .hero-text p {
-            font-size: 16px;
-            line-height: 1.8;
-        }
-
-        .container-fluid {
-            margin-top: 50px;
-        }
-
-        .search-bar {
-            width: 300px;
-            margin-left: auto;
-            margin-right: 10px;
-        }
-
-        .search-button {
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            padding: 8px 16px;
-            border: none;
-        }
-
-        .search-button:hover {
-            background-color: #0056b3;
-            cursor: pointer;
-        }
-    </style>
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gijgo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/responsive.css"> -->
 </head>
 
 <body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../donorhome">
-                <img src="../static/R.jpg" alt="Logo">
-            </a>
-            <div class="collapse navbar-collapse" id="mynavbar">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../donorprofile">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../givedonations">Donations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../listofdonations">Donation List</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../logout">Logout</a>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control search-bar" type="text" placeholder="Search">
-                    <button class="search-button" type="button">Search</button>
-                </form>
+
+     <!-- header-start -->
+     <header>
+        <div class="header-area ">
+            <div class="header-top_area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-12 col-lg-8">
+                            <div class="short_contact_list">
+                                <ul>
+                                    <li><a href="#"> <i class="fa fa-phone"></i> +1 (454) 556-5656</a></li>
+                                    <li><a href="#"> <i class="fa fa-envelope"></i>Yourmail@gmail.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-lg-4">
+                            <div class="social_media_links d-none d-lg-block">
+                                <a href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-pinterest-p"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-3">
+                            <div class="logo">
+                                <a href="../donorhome">
+                                    <img src="{% static 'img/logo.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9">
+                            <div class="main-menu">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="../donorhome">home</a></li>
+                                        <li><a href="../about">About</a></li>
+                                        <li><a href="../listofdonations">Donation List</a></li>
+                                        <li><a href="../donorprofile">Contact</a></li>
+                                        <li><a href="../logout">Logout</a></li>
+                                    </ul>
+                                </nav>
+                                <div class="Appointment">
+                                    <div class="book_btn d-none d-lg-block">
+                                        <li><a href="../givedonations">Make a Donation</a></li>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
+    </header>
+    <!-- header-end -->
 
-    <!-- Hero Section with Overlay Text -->
-    <div class="container-fluid hero-section">
-        <img src="../static/Orphanage-managent-system (1).png" alt="Orphanage Care" class="hero-image">
-        <div class="hero-text">
-            <h3>Care For Child</h3>
-            <p>"Orphanage management" refers to the comprehensive oversight and operation of a residential facility that provides care, shelter, and support to orphaned or otherwise vulnerable children. It encompasses aspects like daily living needs, education, healthcare, emotional well-being, and ultimately aims to prepare them for a stable future through fostering a nurturing environment and facilitating adoption or independent living opportunities when appropriate."</p>
+    <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="single_slider  d-flex align-items-center slider_bg_1 overlay2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="slider_text ">
+                            <span>Get Started Today.</span>
+                            <h3> Help the children
+                                When They Need</h3>
+                            <p>With so much to consume and such little time, coming up <br>
+                                with relevant title ideas is essential</p>
+                            <a href="../about" class="boxed-btn3">Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <!-- slider_area_end -->
 
+    <!-- reson_area_start  -->
+    <div class="reson_area section_padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section_title text-center mb-55">
+                        <h3><span>Reason of Helping</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_reson">
+                        <div class="thum">
+                            <div class="thum_1">
+                                <img src="{% static 'img/help/1.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="help_content">
+                            <h4>Collecting Fund</h4>
+                            <p>Lorem ipsum, or lipsum as it is 
+                                sometimes known, is dummy 
+                                text used in laying out print.</p>
+                            <a href="#" class="read_more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_reson">
+                        <div class="thum">
+                            <div class="thum_1">
+                                <img src="{% static 'img/help/2.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="help_content">
+                            <h4>Blood Camp</h4>
+                            <p>Lorem ipsum, or lipsum as it is 
+                                sometimes known, is dummy 
+                                text used in laying out print.</p>
+                            <a href="#" class="read_more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_reson">
+                        <div class="thum">
+                            <div class="thum_1">
+                                <img src="{% static 'img/help/3.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="help_content">
+                            <h4>Friendly Volunteer</h4>
+                            <p>Lorem ipsum, or lipsum as it is 
+                                sometimes known, is dummy 
+                                text used in laying out print.</p>
+                            <a href="#" class="read_more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- reson_area_end  -->
+
+    <!-- latest_activites_area_start  -->
+    <div class="latest_activites_area">
+        <div class=" video_bg_1 video_activite  d-flex align-items-center justify-content-center">
+            <a class="popup-video" href="https://www.youtube.com/watch?v=MG3jGHnBVQs">
+                <i class="flaticon-ui"></i>
+            </a>
+        </div>
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-lg-7">
+                    <div class="activites_info">
+                        <div class="section_title">
+                            <h3> <span>Watch Our Latest  </span><br>
+                                Activities</h3>
+                        </div>
+                        <p class="para_1">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do 
+                            eiusmod tempor incididunt  ut labore dolore magna aliqua. 
+                            enim minim veniam, quis nostrud exercitation.</p class="para_1">
+                        <p class="para_2">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do 
+                            eiusmod tempor incididunt  ut labore dolore magna aliqua. 
+                            enim minim veniam, quis nostrud exercitation. tempor 
+                            incididunt  ut labore dolore magna aliqua. enim minim 
+                            veniam, quis nostrud exercitation.</p>
+                        <a href="../givedonations" data-scroll-nav='1' class="boxed-btn4">Donate Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- latest_activites_area_end  -->
+
+    <!-- popular_causes_area_start  -->
+    <div class="popular_causes_area section_padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section_title text-center mb-55">
+                        <h3><span>Popular Causes</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="causes_active owl-carousel">
+                        <div class="single_cause">
+                            <div class="thumb">
+                                <img src="{% static 'img/causes/1.png' %}" alt="">
+                            </div>
+                            <div class="causes_content">
+                                <div class="custom_progress_bar">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="progres_count">
+                                                30%
+                                            </span>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="balance d-flex justify-content-between align-items-center">
+                                    <span>Raised: $5000.00 </span>
+                                    <span>Goal: $9000.00 </span>
+                                </div>
+                                <h4>Help us to Send Food</h4>
+                                <p>The passage is attributed to an 
+                                    unknown typesetter in the century 
+                                    who is thought</p>
+                                <a class="read_more" href="cause_details.html">Read More</a>
+                            </div>
+                        </div>
+                        <div class="single_cause">
+                            <div class="thumb">
+                                <img src="{% static 'img/causes/2.png' %}" alt="">
+                            </div>
+                            <div class="causes_content">
+                                <div class="custom_progress_bar">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="progres_count">
+                                                30%
+                                            </span>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="balance d-flex justify-content-between align-items-center">
+                                    <span>Raised: $5000.00 </span>
+                                    <span>Goal: $9000.00 </span>
+                                </div>
+                                <h4>Clothes For Everyone</h4>
+                                <p>The passage is attributed to an 
+                                    unknown typesetter in the century 
+                                    who is thought</p>
+                                <a class="read_more" href="cause_details.html">Read More</a>
+                            </div>
+                        </div>
+                        <div class="single_cause">
+                            <div class="thumb">
+                                <img src="{% static 'img/causes/3.png' %}" alt="">
+                            </div>
+                            <div class="causes_content">
+                                <div class="custom_progress_bar">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="progres_count">
+                                                30%
+                                            </span>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="balance d-flex justify-content-between align-items-center">
+                                    <span>Raised: $5000.00 </span>
+                                    <span>Goal: $9000.00 </span>
+                                </div>
+                                <h4>Water For All Children</h4>
+                                <p>The passage is attributed to an 
+                                    unknown typesetter in the century 
+                                    who is thought</p>
+                                <a class="read_more" href="cause_details.html">Read More</a>
+                            </div>
+                        </div>
+                        <div class="single_cause">
+                            <div class="thumb">
+                                <img src="{% static 'img/causes/1.png' %}" alt="">
+                            </div>
+                            <div class="causes_content">
+                                <div class="custom_progress_bar">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="progres_count">
+                                                30%
+                                            </span>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="balance d-flex justify-content-between align-items-center">
+                                    <span>Raised: $5000.00 </span>
+                                    <span>Goal: $9000.00 </span>
+                                </div>
+                                <h4>Help us to Send Food</h4>
+                                <p>The passage is attributed to an 
+                                    unknown typesetter in the century 
+                                    who is thought</p>
+                                <a class="read_more" href="cause_details.html">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- popular_causes_area_end  -->
+
+    <!-- counter_area_start  -->
+    <div class="counter_area">
+        <div class="container">
+            <div class="counter_bg overlay">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single_counter d-flex align-items-center justify-content-center">
+                            <div class="icon">
+                                <i class="flaticon-calendar"></i>
+                            </div>
+                            <div class="events">
+                                <h3 class="counter">120</h3>
+                                <p>Finished Event</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single_counter d-flex align-items-center justify-content-center">
+                            <div class="icon">
+                                <i class="flaticon-heart-beat"></i>
+                            </div>
+                            <div class="events">
+                                <h3 class="counter">120</h3>
+                                <p>Finished Event</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single_counter d-flex align-items-center justify-content-center">
+                            <div class="icon">
+                                <i class="flaticon-in-love"></i>
+                            </div>
+                            <div class="events">
+                                <h3 class="counter">120</h3>
+                                <p>Finished Event</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single_counter d-flex align-items-center justify-content-center">
+                            <div class="icon">
+                                <i class="flaticon-hug"></i>
+                            </div>
+                            <div class="events">
+                                <h3 class="counter">120</h3>
+                                <p>Finished Event</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- counter_area_end  -->
+
+
+
+    <!-- news__area_start  -->
+    <div class="news__area section_padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section_title text-center mb-55">
+                        <h3><span>News & Updates</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="news_active owl-carousel">
+                        <div class="single__blog d-flex align-items-center">
+                            <div class="thum">
+                                <img src="{% static 'img/news/1.png' %}" alt="">
+                            </div>
+                            <div class="newsinfo">
+                                <span>July 18, 2019</span>
+                                <a href="single-blog.html">
+                                    <h3>Pure Water Is More 
+                                        Essential</h3>
+                                </a>
+                                <p>The passage experienced a 
+                                    surge in popularity during the 
+                                    1960s when used it on their  
+                                    sheets, and again.</p>
+                                <a class="read_more" href="single-blog.html">Read More</a>
+                            </div>
+                        </div>
+                        <div class="single__blog d-flex align-items-center">
+                            <div class="thum">
+                                <img src="{% static 'img/news/2.png' %}" alt="">
+                            </div>
+                            <div class="newsinfo">
+                                <span>July 18, 2019</span>
+                                <a href="single-blog.html">
+                                    <h3>Pure Water Is More 
+                                        Essential</h3>
+                                </a>
+                                <p>The passage experienced a 
+                                    surge in popularity during the 
+                                    1960s when used it on their  
+                                    sheets, and again.</p>
+                                <a class="read_more" href="single-blog.html">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- news__area_end  -->
+
+   
+    <!-- footer_start  -->
+    <footer class="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-md-6 col-lg-4 ">
+                        <div class="footer_widget">
+                            <div class="footer_logo">
+                                <a href="#">
+                                    <img src="{% static 'img/footer_logo.png' %}" alt="">
+                                </a>
+                            </div>
+                            <p class="address_text">Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit, sed do <br> eiusmod tempor incididunt ut labore.
+                            </p>
+                            <div class="socail_links">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-twitter-alt"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-dribbble"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Services
+                            </h3>
+                            <ul class="links">
+                                <li><a href="#">Donate</a></li>
+                                <li><a href="#">Sponsor</a></li>
+                                <li><a href="#">Fundraise</a></li>
+                                <li><a href="#">Volunteer</a></li>
+                                <li><a href="#">Partner</a></li>
+                                <li><a href="#">Jobs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Contacts
+                            </h3>
+                            <div class="contacts">
+                                <p>+2(305) 587-3407 <br>
+                                    info@loveuscharity.com <br>
+                                    Flat 20, Reynolds Neck, North
+                                    Helenaville, FV77 8WS
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Top News
+                            </h3>
+                            <ul class="news_links">
+                                <li>
+                                    <div class="thumb">
+                                        <a href="#">
+                                            <img src="{% static 'img/news/news_1.png' %}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <a href="#">
+                                            <h4>School for African 
+                                                Childrens</h4>
+                                        </a>
+                                        <span>Jun 12, 2019</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="thumb">
+                                        <a href="#">
+                                            <img src="{% static 'img/news/news_2.png' %}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <a href="#">
+                                            <h4>School for African 
+                                                Childrens</h4>
+                                        </a>
+                                        <span>Jun 12, 2019</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="row">
+                    <div class="bordered_1px "></div>
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer_end  -->
+
+    <!-- link that opens popup -->
+
+    <!-- JS here -->
+    <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/ajax-form.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/scrollIt.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/gijgo.min.js' %}"></script>
+    <!--contact js-->
+    <script src="{% static 'js/contact.js' %}"></script>
+    <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'js/jquery.form.js' %}"></script>
+    <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'js/mail-script.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
+
 </html>

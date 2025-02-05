@@ -6,7 +6,7 @@ urlpatterns = [
     path('staff/register/', views.staff_register, name='staff_register'),
     path('', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
-    path('donorhome/', views.donor_home, name='donor_home'),
+    path('donorhome/', views.donor_home, name='donorhome'),
     path('staffhome/', views.staff_home, name='staff_home'),
     path('admin_home/', views.admin_home, name='admin_home'),
     path('addchild/', views.addchild, name='addchild'),
@@ -23,7 +23,7 @@ urlpatterns = [
     path('viewdonors/', views.viewdonors, name='viewdonors'),
     path('viewdonations/', views.viewdonations, name='viewdonations'),
     path('viewchildren/', views.viewchildren, name='viewchildren'),
-
+    path('about/', views.about, name='about'),
 
 
 

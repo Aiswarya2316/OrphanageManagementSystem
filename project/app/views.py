@@ -96,7 +96,7 @@ def user_login(request):
         try:
             donor = DonorRegister.objects.get(email=email, password=password)
             request.session['donor'] = donor.email
-            return redirect('donor_home')
+            return redirect('donorhome')
         except DonorRegister.DoesNotExist:
             pass
 
@@ -362,4 +362,12 @@ def viewdonations(request):
 def viewchildren(request):
     data=Child.objects.all()
     return render(request,'admin/viewchildren.html',{'data':data})
+
+def about(request):
+    return render(request,'donor/about.html')
+
+
+
+
+
 
