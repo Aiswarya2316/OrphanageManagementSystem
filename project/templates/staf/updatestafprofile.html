@@ -11,7 +11,7 @@
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="../stafhome">
+        <a class="navbar-brand" href="../viewchild">
           <img src="../static/R.jpg" alt="Logo" style="width:40px;" class="rounded-pill">
         </a>
     <div class="collapse navbar-collapse" id="mynavbar">
@@ -38,35 +38,37 @@
 </nav>
 
 <div class="container mt-4">
-    <h2>Update Profile</h2>
+    <h2 align="center">Update Profile</h2>
     <form method="POST">
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ staff.name }}" required>
+        <table class="table table-bordered table-sm">
+            <tr>
+                <td><label for="name" class="form-label">Name</label></td>
+                <td><input type="text" class="form-control form-control-sm" id="name" name="name" value="{{ staff.name }}" required></td>
+            </tr>
+            <tr>
+                <td><label for="phone" class="form-label">Phone</label></td>
+                <td><input type="text" class="form-control form-control-sm" id="phone" name="phone" value="{{ staff.phone }}" required></td>
+            </tr>
+            <tr>
+                <td><label for="location" class="form-label">Location</label></td>
+                <td><input type="text" class="form-control form-control-sm" id="location" name="location" value="{{ staff.location }}" required></td>
+            </tr>
+            <tr>
+                <td><label for="password" class="form-label">Password (Leave blank to keep current password)</label></td>
+                <td><input type="password" class="form-control form-control-sm" id="password" name="password"></td>
+            </tr>
+            <tr>
+                <td><label for="confirm_password" class="form-label">Confirm Password</label></td>
+                <td><input type="password" class="form-control form-control-sm" id="confirm_password" name="confirm_password"></td>
+            </tr>
+        </table>
+        <div class="d-flex justify-content-between mt-3">
+            <button type="submit" class="btn btn-primary btn-sm">Update Profile</button>
+            <a href="../stafprofile" class="btn btn-secondary btn-sm">Cancel</a>
         </div>
-        <div class="mb-3">
-            <label for="phone" class="form-label">Phone</label>
-            <input type="text" class="form-control" id="phone" name="phone" value="{{ staff.phone }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="location" class="form-label">Location</label>
-            <input type="text" class="form-control" id="location" name="location" value="{{ staff.location }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password (Leave blank to keep current password)</label>
-            <input type="password" class="form-control" id="password" name="password">
-        </div>
-        <div class="mb-3">
-            <label for="confirm_password" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="confirm_password" name="confirm_password">
-        </div>
-        <button type="submit" class="btn btn-primary">Update Profile</button>
     </form>
-    <a href="../stafprofile" class="btn btn-secondary mt-3">Cancel</a>
 </div>
 
 </body>
 </html>
-
-

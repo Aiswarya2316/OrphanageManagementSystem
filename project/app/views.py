@@ -6,6 +6,8 @@ from .models import DonorRegister, Stafreg
 import re
 from .models import *
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import check_password
+
 
 
 def get_staf(request):
@@ -87,6 +89,7 @@ def staff_register(request):
     return render(request, 'staf/staff_register.html')
 
 
+
 def user_login(request):
     if request.method == 'POST':
         email = request.POST['email']
@@ -104,14 +107,14 @@ def user_login(request):
         try:
             staf = Stafreg.objects.get(email=email, password=password)
             request.session['staf'] = staf.email
-            return redirect('staff_home')
+            return redirect('viewchild')
         except Stafreg.DoesNotExist:
             pass
 
         # Check if user is an admin (superuser)
-        user = authenticate(request, username=email, password=password)
+        user = authenticate(request, email=email, password=password)
         if user is not None and user.is_superuser:
-            login(request, user)
+            login(request, user)  # No need to check password again, `authenticate` handles it
             request.session['admin'] = email
             return redirect('admin_home')
 
@@ -119,6 +122,7 @@ def user_login(request):
         return redirect('login')
 
     return render(request, 'login.html')
+
 
 
 def user_logout(request):
@@ -135,8 +139,6 @@ def user_logout(request):
 def donor_home(request):
     return render(request, 'donor/donorhome.html')
 
-def staff_home(request):
-    return render(request, 'staf/stafhome.html')
 
 def admin_home(request):
     return render(request, 'admin/adminhome.html')
