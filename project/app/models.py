@@ -23,6 +23,17 @@ class Stafreg(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+
+class adminreg(models.Model):
+    email = models.EmailField(unique=True)
+    name = models.TextField()
+    phone = models.IntegerField()
+    password = models.TextField()
+
+    def __str__(self):
+        return self.name
 
 class Child(models.Model):
     name = models.CharField(max_length=100)
