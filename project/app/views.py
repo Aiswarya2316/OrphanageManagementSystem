@@ -146,8 +146,8 @@ def user_logout(request):
     if 'staf' in request.session:
         del request.session['staf']
     if 'admin' in request.session:
-        logout(request)
         del request.session['admin']
+        logout(request)
 
     return redirect('login')
 
