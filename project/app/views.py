@@ -149,7 +149,7 @@ def user_logout(request):
         del request.session['admin']
         logout(request)
 
-    return redirect('login')
+    return redirect('home')
 
 def home(request):
     return render(request,'home.html')
