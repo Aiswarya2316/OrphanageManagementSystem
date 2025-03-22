@@ -67,6 +67,16 @@ class Donation(models.Model):
         return f"{self.donor.name} - {self.donation_type} - {self.amount}"
 
 
+class Event(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    event_date = models.DateField()
+    staff = models.ForeignKey(Stafreg, on_delete=models.CASCADE)  # 🔹 Event Created by Staff
+    children = models.ManyToManyField(Child, related_name="events")  # 🔹 Children Participating
+
+    def __str__(self):
+        return self.title
+
 class ContactMessage(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()

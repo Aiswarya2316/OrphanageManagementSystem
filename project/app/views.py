@@ -160,11 +160,18 @@ def donor_home(request):
 def admin_home(request):
     return render(request, 'admin/adminhome.html')
 
+from django.utils.timezone import now
+from datetime import datetime
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from .models import Child
+
 def addchild(request):
     staf_user = get_staf(request)
     if not staf_user:
         messages.error(request, "You must be logged in as staff to add a child.")
-        return redirect('staff_login') 
+        return redirect('staff_login')
+
     if request.method == 'POST':
         name = request.POST['name']
         age = request.POST['age']
@@ -174,6 +181,20 @@ def addchild(request):
         admission_date = request.POST['admission_date']
         guardian_name = request.POST.get('guardian_name', '')
         guardian_contact = request.POST.get('guardian_contact', '')
+
+        # 🔹 Convert admission_date to a datetime object
+        try:
+            admission_date_obj = datetime.strptime(admission_date, "%Y-%m-%d").date()
+        except ValueError:
+            messages.error(request, "Invalid date format!")
+            return redirect('addchild')
+
+        # 🔹 Ensure admission date is today or in the future
+        if admission_date_obj < now().date():
+            messages.error(request, "Admission date cannot be in the past!")
+            return redirect('addchild')
+
+        # 🔹 Create the child record
         Child.objects.create(
             name=name,
             age=age,
@@ -183,11 +204,13 @@ def addchild(request):
             admission_date=admission_date,
             guardian_name=guardian_name,
             guardian_contact=guardian_contact,
-            staf=staf_user  # 🔹 Link child to logged-in staff
+            staf=staf_user  # Associate child with logged-in staff
         )
         messages.success(request, "Child added successfully!")
         return redirect('viewchild')
+
     return render(request, 'staf/addchild.html')
+
 
 
 def viewchild(request):
@@ -219,6 +242,49 @@ def deletechild(request,id):
     child = Child.objects.get(pk=id)
     child.delete()
     return redirect('viewchild')
+
+
+
+from datetime import datetime
+from django.shortcuts import render, redirect
+from .models import Event, Stafreg
+from .forms import EventForm
+
+def add_event(request):
+    if "staf" not in request.session:  # 🔹 Ensure user is logged in
+        return redirect("login")  # Redirect to login if not authenticated
+    
+    staff_email = request.session.get("staf")  # 🔹 Retrieve staff email from session
+
+    if request.method == "POST":
+        form = EventForm(request.POST)
+        if form.is_valid():
+            event = form.save(commit=False)
+            try:
+                event.staff = Stafreg.objects.get(email=staff_email)  # 🔹 Assign logged-in staff
+            except Stafreg.DoesNotExist:
+                return render(request, "staf/add_event.html", {"form": form, "error": "Staff not found."})
+
+            # Convert date if needed
+            try:
+                event.event_date = datetime.strptime(request.POST['event_date'], "%Y-%m-%d").date()
+            except ValueError:
+                return render(request, "staf/add_event.html", {"form": form, "error": "Invalid date format."})
+            
+            event.save()
+            form.save_m2m()  # Save ManyToMany field
+            return redirect('event_list')  # Redirect to event list page
+
+    else:
+        form = EventForm()
+    return render(request, "staf/add_event.html", {"form": form})
+
+
+
+def event_list(request):
+    events = Event.objects.all()
+    return render(request, "staf/event_list.html", {"events": events})
+
 
 
 def stafprofile(request):
@@ -322,6 +388,14 @@ def listofdonations(request):
         'donations': donations,
     }
     return render(request, 'donor/listofdonations.html', context)
+
+def children(request):
+    children = Child.objects.all()
+    return render(request, "donor/children.html", {"children": children})
+
+def event(request):
+    events = Event.objects.all()
+    return render(request, "donor/event.html", {"events": events})
 
 
 def viewstaffs(request):

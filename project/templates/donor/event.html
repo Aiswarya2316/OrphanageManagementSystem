@@ -155,33 +155,42 @@
 <!-- header-end -->
 
     <!-- Heading -->
+    <h2>List of Donations</h2>
 
     <!-- Table Container -->
-    <div class="table-container container">
-    <h2>List of Donations</h2>
-        <table class="table table-bordered table-striped table-hover">
-            <thead>
+    <div class="container mt-4">
+        <h2>Activities for each child</h2>
+        <table class="table table-bordered">
+            <thead class="table-dark">
                 <tr>
-    <h2>List of Donations</h2>
-                </tr>
-                <tr>
-                    <th>Donation Type</th>
-                    <th>Amount</th>
-                    <th>Description</th>
-                    <th>Donation Date</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Organiser</th>
+                    <th>Child</th>
+                    <th>Child Age</th>
                 </tr>
             </thead>
             <tbody>
-                {% for donation in donations %}
+                {% for event in events %}
                 <tr>
-                    <td>{{ donation.donation_type }}</td>
-                    <td>{{ donation.amount }}</td>
-                    <td>{{ donation.description }}</td>
-                    <td>{{ donation.donation_date }}</td>
+                    <td>{{ event.title }}</td>
+                    <td>{{ event.event_date }}</td>
+                    <td>{{ event.staff.name }}</td>
+                    <td><ul>
+                        {% for child in event.children.all %}
+                            <li>{{ child.name }} </li>
+                        {% endfor %}
+                    </ul></td>
+                    <td><ul>
+                        {% for child in event.children.all %}
+                            <li>{{ child.age }} years</li>
+                        {% endfor %}
+                    </ul></td>
+                   
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="4" class="text-center">No donations made yet.</td>
+                    <td colspan="8" class="text-center">No children added yet.</td>
                 </tr>
                 {% endfor %}
             </tbody>
