@@ -244,34 +244,40 @@ def deletechild(request,id):
     return redirect('viewchild')
 
 
-
 from django.shortcuts import render, redirect
 from .models import Event, Stafreg
 from .forms import EventForm
 
 def add_event(request):
-    if "staf" not in request.session:  # 🔹 Ensure user is logged in
-        return redirect("login")  # Redirect to login if not authenticated
-    
-    staff_email = request.session.get("staf")  # 🔹 Retrieve staff email from session
+    if "staf" not in request.session:
+        return redirect("login")
+
+    staff_email = request.session.get("staf")
+    print("Staff Email from Session:", staff_email)  # ✅ Debug print
 
     if request.method == "POST":
-        form = EventForm(request.POST, request.FILES)  # ✅ Include request.FILES
+        form = EventForm(request.POST, request.FILES)
         if form.is_valid():
             event = form.save(commit=False)
+
             try:
-                event.staff = Stafreg.objects.get(email=staff_email)  # ✅ Assign logged-in staff
+                event.staff = Stafreg.objects.get(email=staff_email)
             except Stafreg.DoesNotExist:
+                print("Staff not found!")  # ✅ Debug if staff is missing
                 return render(request, "staf/add_event.html", {"form": form, "error": "Staff not found."})
 
-            event.event_date = form.cleaned_data['event_date']  # ✅ Let Django handle date
+            print("Saving event:", event.title, event.event_date)  # ✅ Debug before saving
+            event.save()
+            print("Event saved!")  # ✅ Confirm save
 
-            event.save()  # ✅ Save event
-            return redirect('event_list')  # Redirect to event list page
+            return redirect('event_list')
+        else:
+            print("Form errors:", form.errors)  # ❌ Debug if form is invalid
 
     else:
         form = EventForm()
     return render(request, "staf/add_event.html", {"form": form})
+
 
 
 def event_list(request):

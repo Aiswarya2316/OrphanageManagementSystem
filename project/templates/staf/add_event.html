@@ -59,6 +59,18 @@
 <div class="container mt-5">
     <div class="card p-4">
         <h3 class="text-center mb-4">Add New Event</h3>
+        {% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    <li>{{ field }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
         
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
@@ -72,10 +84,13 @@
                         <td><label for="id_description" class="form-label">Description:</label></td>
                         <td>{{ form.description }}</td>
                     </tr>
-                    <tr>
-                        <td><label for="id_event_date" class="form-label">Event Date:</label></td>
-                        <td>{{ form.event_date }}</td>
-                    </tr>
+                  
+                        <tr>
+                            <td><label for="id_event_date" class="form-label">Event Date:</label></td>
+                            <td><input type="date" name="event_date" id="id_event_date" class="form-control" required></td>
+                        </tr>
+                        
+                   
                     <tr>
                         <td><label for="id_conducted_by" class="form-label">Conducted by:</label></td>
                         <td>{{ form.conducted_by }}</td>
