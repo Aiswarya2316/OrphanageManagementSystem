@@ -14,44 +14,52 @@
             margin-bottom: 20px;
         }
 
-        .table-container {
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
             margin-top: 20px;
         }
-
-        table th, table td {
+        
+        .card {
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: scale(1.05);
+        }
+        
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-body {
+            padding: 15px;
             text-align: center;
         }
-
-        .table {
-            margin-top: 30px;
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
         }
-
-        .table th, .table td {
-            padding: 15px;
-            vertical-align: middle;
-        }
-
-        .table td {
+        
+        .card-text {
             font-size: 14px;
+            margin-top: 5px;
         }
-
-        .table thead {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        .table td {
-            background-color: #f9f9f9;
-        }
-
-        .table td:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
+        
         h2 {
-            margin-top: 30px;
             text-align: center;
             color: #007bff;
+            margin-top: 30px;
         }
 
         .btn-custom {
@@ -158,45 +166,30 @@
     <h2>List of Donations</h2>
 
     <!-- Table Container -->
-    <div class="container mt-4">
-        <h2>Activities for each child</h2>
-        <table class="table table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th>Title</th>
-                    <th>Date</th>
-                    <th>Organiser</th>
-                    <th>Child</th>
-                    <th>Child Age</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for event in events %}
-                <tr>
-                    <td>{{ event.title }}</td>
-                    <td>{{ event.event_date }}</td>
-                    <td>{{ event.staff.name }}</td>
-                    <td><ul>
-                        {% for child in event.children.all %}
-                            <li>{{ child.name }} </li>
-                        {% endfor %}
-                    </ul></td>
-                    <td><ul>
-                        {% for child in event.children.all %}
-                            <li>{{ child.age }} years</li>
-                        {% endfor %}
-                    </ul></td>
-                   
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="8" class="text-center">No children added yet.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <header>
+        <div class="container">
+            <h2>List of Events</h2>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="card-container">
+            {% for event in events %}
+            <div class="card">
+                <img src="{{ event.image.url }}" alt="Event Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.title }}</h5>
+                    <p class="card-text">{{ event.discription }}</p>
+                    <p class="card-text"><strong>Date:</strong> {{ event.event_date }}</p>
+                    <p class="card-text"><strong>Organiser:</strong> {{ event.staff.name }}</p>
+                    <p class="card-text"><strong>Conducted By:</strong> {{ event.conducted_by }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-center">No donations available.</p>
+            {% endfor %}
+        </div>
     </div>
-
      <!-- footer_start  -->
      <footer class="footer">
         <div class="footer_top">

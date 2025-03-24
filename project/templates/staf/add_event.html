@@ -34,7 +34,6 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="../viewchild">
             <img src="../static/R.jpg" alt="Logo" style="width:40px;" class="rounded-pill">
-           
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -48,10 +47,10 @@
                 <li class="nav-item"><a class="nav-link" href="../viewevents">View Events</a></li>
                 <li class="nav-item"><a class="nav-link" href="../logout">Logout</a></li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search">
+            {% comment %} <form class="d-flex" method="GET" action="{% url 'search_events' %}">
+                <input class="form-control me-2" type="search" name="q" placeholder="Search">
                 <button class="btn btn-primary" type="submit">Search</button>
-            </form>
+            </form> {% endcomment %}
         </div>
     </div>
 </nav>
@@ -61,7 +60,7 @@
     <div class="card p-4">
         <h3 class="text-center mb-4">Add New Event</h3>
         
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <table class="table">
                 <tbody>
@@ -78,8 +77,12 @@
                         <td>{{ form.event_date }}</td>
                     </tr>
                     <tr>
-                        <td><label for="id_children" class="form-label">Participants:</label></td>
-                        <td>{{ form.children }}</td>
+                        <td><label for="id_conducted_by" class="form-label">Conducted by:</label></td>
+                        <td>{{ form.conducted_by }}</td>
+                    </tr>
+                    <tr>
+                        <td><label for="id_image" class="form-label">Image:</label></td>
+                        <td>{{ form.image }}</td>
                     </tr>
                 </tbody>
             </table>

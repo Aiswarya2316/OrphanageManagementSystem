@@ -245,7 +245,6 @@ def deletechild(request,id):
 
 
 
-from datetime import datetime
 from django.shortcuts import render, redirect
 from .models import Event, Stafreg
 from .forms import EventForm
@@ -257,28 +256,22 @@ def add_event(request):
     staff_email = request.session.get("staf")  # 🔹 Retrieve staff email from session
 
     if request.method == "POST":
-        form = EventForm(request.POST)
+        form = EventForm(request.POST, request.FILES)  # ✅ Include request.FILES
         if form.is_valid():
             event = form.save(commit=False)
             try:
-                event.staff = Stafreg.objects.get(email=staff_email)  # 🔹 Assign logged-in staff
+                event.staff = Stafreg.objects.get(email=staff_email)  # ✅ Assign logged-in staff
             except Stafreg.DoesNotExist:
                 return render(request, "staf/add_event.html", {"form": form, "error": "Staff not found."})
 
-            # Convert date if needed
-            try:
-                event.event_date = datetime.strptime(request.POST['event_date'], "%Y-%m-%d").date()
-            except ValueError:
-                return render(request, "staf/add_event.html", {"form": form, "error": "Invalid date format."})
-            
-            event.save()
-            form.save_m2m()  # Save ManyToMany field
+            event.event_date = form.cleaned_data['event_date']  # ✅ Let Django handle date
+
+            event.save()  # ✅ Save event
             return redirect('event_list')  # Redirect to event list page
 
     else:
         form = EventForm()
     return render(request, "staf/add_event.html", {"form": form})
-
 
 
 def event_list(request):

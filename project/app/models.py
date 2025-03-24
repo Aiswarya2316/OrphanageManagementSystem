@@ -67,20 +67,27 @@ class Donation(models.Model):
         return f"{self.donor.name} - {self.donation_type} - {self.amount}"
 
 
+from django.db import models
+
 class Event(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     event_date = models.DateField()
     staff = models.ForeignKey(Stafreg, on_delete=models.CASCADE)  # 🔹 Event Created by Staff
-    children = models.ManyToManyField(Child, related_name="events")  # 🔹 Children Participating
+    conducted_by = models.CharField(max_length=255, null=True, blank=True)  # 🔹 Conducted by an external person or group
+    image = models.ImageField(upload_to='event_images/', null=True, blank=True)  # 🔹 Image field
 
     def __str__(self):
         return self.title
 
-class ContactMessage(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.EmailField()
-    subject = models.CharField(max_length=255)
-    message = models.TextField()
-    def __str__(self):
-        return f"{self.name} - {self.subject}"
+
+
+
+
+
+
+
+
+
+
+
